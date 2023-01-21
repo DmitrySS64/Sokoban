@@ -1,0 +1,38 @@
+﻿<Window x:Class="Sokoban.MVVM.View.NewLewelView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sokoban.MVVM.View"
+        mc:Ignorable="d"
+        Title="NewLewelView" Height="150" Width="300">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Ширина поля"/>
+        <TextBlock Text="Высота поля" Grid.Row="1"/>
+        <TextBox Grid.Column="1" x:Name="Width"/>
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="Height"/>
+        <Button Margin="5" Padding="5" Grid.Row="2" Content="Добавить в корзину" Click="AddClicked"></Button>
+        <Button Margin="5" Padding="5" Grid.Row="2" Grid.Column="1" Content="Отмена" Click="CancelClicked"></Button>
+    </Grid>
+</Window>

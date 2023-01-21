@@ -1,0 +1,77 @@
+﻿<Window x:Class="Sokoban.MVVM.View.LevelEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sokoban.MVVM.View"
+        xmlns:VM="clr-namespace:Sokoban.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="LevelEditor" Height="450" Width="800">
+    <Window.Resources>
+        <VM:LevelEditorViewModel x:Key="MenuVM"/>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                   Margin="10,0,10,0"/>
+                                <Grid Width="10" Height="10" Background="{TemplateBinding Background}"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightBlue"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="MediumSlateBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel DataContext="{StaticResource MenuVM}">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Save" Click="SaveClick"/>
+                <MenuItem Header="Load" Command="{Binding LoadCommand}"/>
+                <Separator/>
+                <MenuItem Header="New Level" Click="NewLVLClick"/>
+            </MenuItem>
+            <MenuItem Header="Play"/>
+            <MenuItem Header="Add Game in list of levels"/>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Viewbox>
+                <StackPanel>
+                    <RadioButton Content="None" Background="White" x:Name="NoneRB" />
+                    <RadioButton Content="Wall" Background="Black" x:Name="WallRB"/>
+                    <RadioButton Content="Floor" Background="#909090" x:Name="FloorRB"/>
+                    <RadioButton Content="Box" Background="#d9a165" x:Name="BoxRB"/>
+                    <RadioButton Content="Red Box" Background="Red" x:Name="RedBoxRB"/>
+                    <RadioButton Content="Green Box" Background="Green" x:Name="GreenBoxRB"/>
+                    <RadioButton Content="Gold" Background="Gold" x:Name="PointRB"/>
+                    <RadioButton Content="Player" Background="#5d9d35" x:Name="PlayerRB"/>
+                </StackPanel>
+            </Viewbox>
+
+            <Viewbox Margin="10" Grid.Column="1">
+                <Grid x:Name="GameGrid" 
+                    Background="#101010"/>
+            </Viewbox>
+
+        </Grid>
+    </DockPanel>
+</Window>
